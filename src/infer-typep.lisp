@@ -43,6 +43,8 @@
 (defvar *max-compound-type-arguments* 10)
 (defvar *compound-infer-level*)
 (defun all-compound-types (compound &optional (*compound-infer-level* 0))
+  #+egcl
+  (return-from all-compound-types (list compound))
   ;; in ANSI, functions like find-type is not implemented.  Also, the
   ;; consequences are undefined if the type-specifier is not a type
   ;; specifier.  however, in most implementations the default behavior is

@@ -58,6 +58,10 @@ If the values are NIL,NIL , it means the type is not successfully inferred."
          (warn 'failed-type-inference :test test)
          (values nil nil))
       (push now closed)
+      #+egcl
+      (match now
+        ((list 'typep '? (list 'quote type))
+         (return-from test-type (values type t))))
       (maphash (lambda (key fn)
                  (declare (ignorable key))
                  (match now
