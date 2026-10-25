@@ -61,6 +61,8 @@ If the values are NIL,NIL , it means the type is not successfully inferred."
       #+egcl
       (match now
         ((list 'typep '? (list 'quote type))
+         (when verbose
+           (format t "~& test: ~a inferred type: ~a" test type))
          (return-from test-type (values type t))))
       (maphash (lambda (key fn)
                  (declare (ignorable key))
